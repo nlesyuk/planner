@@ -1,0 +1,16 @@
+h1,
+p,
+h2 {
+  color: $text;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: $background;
+  transition: all 0.5s;
+  user-select: none;
+  // background: linear-gradient(to bottom, #17ffd9, #5fb0f8);
+}

@@ -1,8 +1,7 @@
 import './index.html';
 import './index.scss';
-
-const mult = (a, b) => a * b;
+import { mult, sum } from './modules/calc'
 
 console.log(mult(2, 4))
-console.log(mult(2, 5))
-console.log(process.env.NODE_ENV)
+console.log(sum(2, 4))
+

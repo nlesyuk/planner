@@ -16,7 +16,10 @@ module.exports = {
     open: true,
     hot: true,
   },
-  entry: path.resolve(__dirname, 'src', 'index.js'),
+  entry: [
+    "@babel/polyfill", // dependency
+    path.resolve(__dirname, 'src', 'index.js')
+  ],
   output: {
     path: path.resolve(__dirname, 'dist'), // folder
     clean: true, // clear before build
@@ -32,10 +35,12 @@ module.exports = {
   ],
   module: {
     rules: [
+      // html
       {
         test: /\.html$/i,
         loader: 'html-loader'
       },
+      // css
       {
         test: /\.(c|sa|sc)ss$/i,
         use: [
@@ -51,6 +56,19 @@ module.exports = {
           },
           "sass-loader",
         ],
+      },
+      // js
+      {
+        test: /\.(?:js|mjs|cjs)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', { targets: "defaults" }]
+            ]
+          }
+        }
       },
     ]
   }

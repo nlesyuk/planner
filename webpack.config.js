@@ -17,13 +17,14 @@ module.exports = {
     hot: true,
   },
   entry: [
-    "@babel/polyfill", // dependency
-    path.resolve(__dirname, 'src', 'index.js')
+    "@babel/polyfill", // dependency injected
+    path.resolve(__dirname, 'src', 'index.js') // main entry point
   ],
   output: {
     path: path.resolve(__dirname, 'dist'), // folder
     clean: true, // clear before build
     filename: '[name].[contenthash].js',
+    assetModuleFilename: 'assets/[name][hash][ext]', // for img
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -68,6 +69,14 @@ module.exports = {
               ['@babel/preset-env', { targets: "defaults" }]
             ]
           }
+        }
+      },
+      // fonts
+      {
+        test: /\.(?:woff|woff2|ttf)$/i,
+        type: 'asset/resource',
+        generator: { // if disable generator then all fonts put in `output.assetModuleFilename` config
+          filename: 'fonts/[name]rrк[ext]',
         }
       },
     ]

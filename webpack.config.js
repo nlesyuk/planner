@@ -79,6 +79,11 @@ module.exports = {
           filename: 'fonts/[name]rrк[ext]',
         }
       },
+      // img
+      {
+        test: /\.(?:jp?eg|gif|webp|png|svg)$/i,
+        type: 'asset/resource',
+      },
     ]
   }
 }
